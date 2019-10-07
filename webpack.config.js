@@ -6,7 +6,8 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     filename: "main.js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
+    publicPath: path.resolve(__dirname, "dist")
   },
   mode: "production", //'none' | 'development' | 'production'
   /*
@@ -18,9 +19,10 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: devMode ? "[name].css" : "[name].[hash].css",
-      chunkFilename: devMode ? "[id].css" : "[id].[hash].css"
+      // all options are optional
+      filename: "[name].css",
+      chunkFilename: "[id].css",
+      ignoreOrder: false // Enable to remove warnings about conflicting order
     })
   ],
   module: {
@@ -42,12 +44,20 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              hmr: process.env.NODE_ENV === "development"
+              publicPath: "../penuts",
+              hmr: process.env.NODE_ENV === "production"
             }
           },
-          "css-loader",
+          {
+            loader: "css-loader",
+            options: { url: false } //Stop webpack
+          },
           "sass-loader"
         ]
+      },
+      {
+        test: /\.svg$/,
+        loader: "svg-inline-loader"
       }
     ]
   }
