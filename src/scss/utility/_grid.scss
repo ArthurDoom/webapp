@@ -1,0 +1,71 @@
+$grid-columns: 12;
+$break-sml: 576px;
+$break-md: 768px;
+$break-lg: 992px;
+$break-xl: 1200px;
+$col-padding: 0.5rem;
+
+@mixin mq($from) {
+  @media (min-width: $from) {
+    @content;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+
+  //Apply style to children not all descendants
+  > * {
+    flex-shrink: 0;
+    width: 100%;
+  }
+
+  &--padding {
+    margin-left: -$col-padding;
+    margin-right: -$col-padding;
+
+    > * {
+      padding-left: $col-padding;
+      padding-right: $col-padding;
+    }
+  }
+}
+
+@for $i from 1 through $grid-columns {
+  .col-xs-#{$i} {
+    max-width: #{100% * $i / $grid-columns};
+  }
+}
+
+@for $i from 1 through $grid-columns {
+  .col-sm-#{$i} {
+    @include mq($break-sml) {
+      max-width: #{100% * $i / $grid-columns};
+    }
+  }
+}
+
+@for $i from 1 through $grid-columns {
+  .col-md-#{$i} {
+    @include mq($break-md) {
+      max-width: #{100% * $i / $grid-columns};
+    }
+  }
+}
+
+@for $i from 1 through $grid-columns {
+  .col-lg-#{$i} {
+    @include mq($break-lg) {
+      max-width: #{100% * $i / $grid-columns};
+    }
+  }
+}
+
+@for $i from 1 through $grid-columns {
+  .col-lg-#{$i} {
+    @include mq($break-xl) {
+      max-width: #{100% * $i / $grid-columns};
+    }
+  }
+}

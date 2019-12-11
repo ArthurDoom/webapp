@@ -1,4 +1,4 @@
-import "./css/main.scss";
+import "./scss/main.scss";
 import { user } from "./js/tests/user";
 
 async function getPosts() {
