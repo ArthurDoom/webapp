@@ -5,6 +5,16 @@ $break-lg: 992px;
 $break-xl: 1200px;
 $col-padding: 0.5rem;
 
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.container-full {
+  margin: 0;
+  max-width: 100%;
+}
+
 @mixin mq($from) {
   @media (min-width: $from) {
     @content;
@@ -25,6 +35,7 @@ $col-padding: 0.5rem;
     margin-left: -$col-padding;
     margin-right: -$col-padding;
 
+    //Apply style to children not all descendants
     > * {
       padding-left: $col-padding;
       padding-right: $col-padding;
