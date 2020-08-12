@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/ArthurDoom/webapp#readme",
   "devDependencies": {
-    "serialize-javascript": ">=2.1.1",
+    "serialize-javascript": ">=3.1.0",
     "@babel/core": "^7.6.2",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.6.2",
